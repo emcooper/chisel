@@ -7,8 +7,9 @@ class Chisel
     print_summary
   end 
   
-  def open_input_file(file)
-    File.open(file, "r")
+  def extract_input_text(file)
+    file = File.open(file, "r")
+    file.read
   end 
   
 end 

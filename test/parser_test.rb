@@ -3,13 +3,23 @@ require 'minitest/pride'
 require './lib/parser'
 
 class ParserTest < Minitest::Test
-  def test_it_initializes_with_line
-    parser = Parser.new("# My Life in Desserts")
+  def test_it_initializes_with_markdown_text
+    parser = Parser.new("# My Life in Desserts
+
+    ## Chapter 1: The Beginning")
     
-    assert_equal "# My Life in Desserts", parser.line
+    expected = "# My Life in Desserts
+
+    ## Chapter 1: The Beginning"
+    
+    assert_equal expected, parser.markdown_text
   end 
   
-  def test_it_converts_free_standing_text_to_paragraphs
+  def test_create_paragraphs_converts_free_standing_text_to_paragraphs
     skip
+    parser = Parser.new(file)
+    
+    
+    parser.create_paragraphs
   end 
 end 
