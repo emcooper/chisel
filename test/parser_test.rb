@@ -12,14 +12,14 @@ class ParserTest < Minitest::Test
 
     ## Chapter 1: The Beginning"
     
-    assert_equal expected, parser.markdown_text
+    assert_equal expected, parser.text
   end 
   
-  def test_create_paragraphs_converts_free_standing_text_to_paragraphs
-    skip
-    parser = Parser.new(file)
+  def test_create_paragraphs_converts_1_free_standing_line_to_paragraph
+    parser = Parser.new("this is a paragraph\n\n")
     
+    expected = "<p>this is a paragraph</p>\n"
     
-    parser.create_paragraphs
+    assert_equal expected, parser.create_paragraphs
   end 
 end 

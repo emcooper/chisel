@@ -1,16 +1,23 @@
+
 class Parser
-  attr_reader :markdown_text
-  def initialize(markdown_text)
-    @markdown_text = markdown_text
+  attr_reader :text
+  def initialize(text)
+    @text = text
   end 
+
+  def create_paragraphs
+    #check first line for beginning of paragraph
+    if @text[0] != "#"
+      @text.insert(0, "<p>")
+    end 
+    #check for beginning of paragraph mid-text (after 2 new lines)
   
-  def parse
-    #parse each line using gsub
-    
-  end 
-  
-  def create_paragraphs(file)
-    #if line[0] != "#"
+    #check for end of paragrapraph cases(2 new lines, start of header, end of file)
+    @text.each_line do |line|
+      if line[-1..-2] == "\n\n" && !line.include?("#")
+        line.sub("\n", "</p>")
+      end 
+    end 
   end 
   
   #level 1:
